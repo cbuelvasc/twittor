@@ -12,7 +12,7 @@ func InsertUser(u models.User) (string, bool, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
 	defer cancel()
 	db := MongoConecctiont.Database("twittor")
-	col := db.Collection("Users")
+	col := db.Collection("users")
 	u.Password, _ = EncryptPassword(u.Password)
 	result, err := col.InsertOne(ctx, u)
 	if err != nil {

@@ -12,8 +12,8 @@ func ValidateUser(email string) (models.User, bool, string) {
 	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
 	defer cancel()
 	db := MongoConecctiont.Database("twittor")
-	col := db.Collection("Users")
-	condition := bson.M{"emil": email}
+	col := db.Collection("users")
+	condition := bson.M{"email": email}
 	var result models.User
 	err := col.FindOne(ctx, condition).Decode(&result)
 	ID := result.ID.Hex()
